@@ -5,6 +5,7 @@ const { Http2ServerRequest } = require('http2');
 
 const port = 3000;
 const sslMode = false;
+const baseDir = '';
 
 const privateKeyFile = '';
 const sslCertFile = '';
@@ -14,7 +15,7 @@ const app = express();
 app.get('/getFolders/:user', (req, res) => {
   const { user } = req.params;
 
-  fs.readdir(`${user}/incoming/`,
+  fs.readdir(`${baseDir}/${user}/incoming/`,
     { withFileTypes: true },
     (err, files) => {
       const dirArry = [];
