@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
   "name": "folder-getter",
   "description": "Simple Node Server to get folders from server",
   "version": "1.0.0",
   "main": ".eslintrc.js",
+  "type": "module",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -19,6 +21,6 @@
     "url": "https://github.com//griidc/folder-getter"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "GRIIDC",
+  "license": "BSD-2-Clause"
 }

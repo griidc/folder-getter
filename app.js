@@ -1,45 +1,44 @@
-const express = require('express');
-const https = require('https');
-const fs = require('fs');
-const { Http2ServerRequest } = require('http2');
+import express from 'express';
+import dotenv from 'dotenv';
+import { createServer } from 'https';
+import { readdir, readFileSync } from 'fs';
 
-const port = 3000;
-const sslMode = false;
-const baseDir = '';
-
-const privateKeyFile = '';
-const sslCertFile = '';
+dotenv.config();
 
 const app = express();
 
-app.get('/getFolders/:user', (req, res) => {
+const baseDir = process.env.BASE_DIR;
+
+app.get('/get-folders/:user', (req, res) => {
   const { user } = req.params;
 
-  fs.readdir(`${baseDir}/${user}/incoming/`,
+  readdir(`${baseDir}/${user}/incoming/`,
     { withFileTypes: true },
     (err, files) => {
       const dirArry = [];
       if (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        res.status(400).json({ code: 400, message: 'no such file or directory' });
       } else {
         files.forEach((file) => {
           if (file.isDirectory()) {
             dirArry.push(file.name);
           }
         });
+
+        res.json([dirArry]);
       }
-      res.json([dirArry]);
     });
 });
 
-if (sslMode === true) {
-  const privateKey = fs.readFileSync(privateKeyFile);
-  const sslCertificate = fs.readFileSync(sslCertFile);
+const port = process.env.PORT;
 
-  https.createServer({
+if (process.env.SSL_MODE === 'true') {
+  const privateKey = readFileSync(process.env.SSL_PRIVATE_KEY);
+  const sslCertificate = readFileSync(process.env.SSL_CERTIFICATE);
+
+  createServer({
     key: privateKey,
-    cert: sslCertificate
+    cert: sslCertificate,
   }, app).listen(port);
   // eslint-disable-next-line no-console
   console.log(`Folder getter app listening at https://localhost:${port}`);
