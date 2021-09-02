@@ -25,9 +25,9 @@ app.get('/get-folders/:user', (req, res) => {
           }
         });
 
-        res.json([dirArry]);
-      }
-    });
+        res.json(dirArry);
+      };
+  });
 });
 
 const port = process.env.PORT;
