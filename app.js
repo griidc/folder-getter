@@ -21,7 +21,7 @@ app.get('/get-folders/:user', (req, res) => {
       } else {
         files.forEach((file) => {
           if (file.isDirectory()) {
-            dirArry.push(file.name);
+            dirArry.push([ file.name, baseDir + '/' + user + '/incoming' ]);
           }
         });
 
