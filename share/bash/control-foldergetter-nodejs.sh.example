@@ -21,7 +21,7 @@ success=true;
 # Start the service
 start() {
     echo -n $"Starting $prog: "
-	cd /<SYSUSER>/folder-getter
+	cd $runuserdir/folder-getter
 
     if su - $runuser -c "supervisord --configuration=/$runuserdir/folder-getter/conf/supervisord.conf --identifier=nodeserver" ; then
         echo "started supervisord"
