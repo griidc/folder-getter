@@ -1,0 +1,10 @@
+[group:folder-getter]
+programs=normal
+
+[program:normal]
+command=node /<SYSUSERDIR>/folder-getter/app.js
+user=<sysuser>
+numprocs=1
+autostart=true
+autorestart=true
+process_name=%(program_name)s_%(process_num)02d
