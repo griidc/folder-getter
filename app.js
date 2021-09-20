@@ -22,7 +22,7 @@ app.get('/get-folders/:user', (req, res) => {
         let dirArray = {};
         files.forEach((file) => {
           if (file.isDirectory()) {
-	    dirArray[file.name] = `${baseDir}/${user}/incoming/${file.name}`;
+	          dirArray[file.name] = `${baseDir}/${user}/incoming/${file.name}`;
           }
         });
 
