@@ -4,7 +4,12 @@ programs=normal
 [program:normal]
 command=/usr/bin/node /<SYSUSERDIR>/folder-getter/app.js
 user=<sysuser>
-environment=PORT="3000",BASE_DIR="/some/path",SSL_MODE="false",SSL_PRIVATE_KEY="/path/name.key",SSL_CERTIFICATE="/path/name.crt"
+environment=
+	PORT="3000",
+	BASE_DIR="/some/path",
+	SSL_MODE="false",
+	SSL_PRIVATE_KEY="/path/name.key",
+	SSL_CERTIFICATE="/path/name.crt"
 numprocs=1
 autostart=true
 autorestart=true
