@@ -1,0 +1,12 @@
+[Unit]
+Description=Control folder-getter node service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/local/bin/control-foldergetter-nodejs.sh start
+ExecStop=/bin/bash /usr/local/bin/control-foldergetter-nodejs.sh stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
