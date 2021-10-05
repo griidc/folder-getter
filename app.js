@@ -19,13 +19,11 @@ app.get('/get-folders/:user', (req, res) => {
       if (err) {
         res.status(400).json({ code: 400, message: 'no such file or directory' });
       } else {
-        let dirArray = {};
         files.forEach((file) => {
           if (file.isDirectory()) {
-	          dirArray[file.name] = `${baseDir}/${user}/incoming/${file.name}`;
+	          dirArray.push(`${baseDir}/${user}/incoming/${file.name}`);
           }
         });
-
         res.json(dirArray);
       };
   });
